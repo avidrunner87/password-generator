@@ -26,7 +26,6 @@ function writePassword() {
 
 function generatePassword() {
 
-  alert("This is a pop-up");
   //Get values from the input form
   let length = lengthSlider.value;
   let lowercase = document.getElementById("pwLowercase").checked;
