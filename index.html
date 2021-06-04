@@ -14,39 +14,48 @@
       </header>
       <div class="card">
         <div class="card-header">
-          <h2>Password Criteria</h2>
+          <h2>Please provide details below:</h2>
         </div>
         <div class="card-body">
-          <p>Please update the criteria for the password:</p>
-
-          <label for="pwLength">
-            <h4>Length (8 to 128)</h4>
-            <input type="range" id="pwLength" min="8" max="128" value="16">
+          <!-- Form to capture the criteria before generating the password with a button to generate the password -->
+          <form>
+            <!-- Range Input to capture the desired length of the password -->
+            <label for="pwLength">Length (8 to 128)</label>
+            <input id="pwLength" type="range" min="8" max="128" value="16" />
             <span id="pwLengthOutput"></span>
-          </label>
-          <label for="pwLowercase">
-            <h4>Lowercase</h4>
-            <input type="checkbox" id="pwLowercase">
-          </label>
-          <label for="pwUppercase">
-            <h4>Uppercase</h4>
-            <input type="checkbox" id="pwUppercase">
-          </label>
-          <label for="pwNumeric">
-            <h4>Numeric</h4>
-            <input type="checkbox" id="pwNumeric">
-          </label>
-          <label for="pwSpecialChar">
-            <h4>Special Characters</h4>
-            <input type="checkbox" id="pwSpecialChar">
-          </label>
-
-
-
-          <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+            <!-- Checkbox Input to capture whether the password should include lowercase letters -->
+            <label for="pwLowercase">
+              Lowercase
+              <input id="pwLowercase" type="checkbox" />
+              <span id="pwLowercaseToggle" aria-hidden="true" tabindex="0"></span>
+            </label>
+            <!-- Checkbox Input to capture whether the password should include uppercase letters -->
+            <label for="pwUppercase">
+              Uppercase
+              <input id="pwUppercase" type="checkbox" />
+              <span id="pwUppercaseToggle" aria-hidden="true" tabindex="0"></span>
+            </label>
+            <!-- Checkbox Input to capture whether the password should include numbers -->
+            <label for="pwNumeric">
+              Numeric
+              <input id="pwNumeric" type="checkbox" />
+              <span id="pwNumericToggle" aria-hidden="true" tabindex="0"></span>
+            </label>
+            <!-- Checkbox Input to capture whether the password should include special characters -->
+            <label for="pwSpecialChar">
+              Special Characters
+              <input id="pwSpecialChar" type="checkbox" />
+              <span id="pwSpecialCharToggle" aria-hidden="true" tabindex="0"></span>
+            </label>
+            <!-- Button to generate the password -->
+            <div class="center">
+              <button id="generate" class="btn">Generate Password</button>
+            </div>
+          </form>
         </div>
         <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
+          <!-- Output from the password generation -->
+          <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
         </div>
       </div>
     </div>

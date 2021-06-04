@@ -1,48 +1,54 @@
 # Password Generator
 
-
-## DONT DELETE
-
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element
-https://www.w3schools.com/
-
-
 ## Description
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-## Table of Contents (Optional)
-If your README is long, add a table of contents to make it easy for users to find what they need.
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+Building a password generator application that takes in criteria from the user and runs dynamically on the webpage with no server-side code. This application is responsive to screen sizes and has been refactored to improve on the user experience and accessibility. 
+
+### User Story
+**AS AN** employee with access to sensitive data<br>
+I **WANT** to randomly generate a password that meets certain criteria<br>
+**SO THAT** I can create a strong password that provides greater security
+
+### Acceptance Criteria
+**GIVEN** I need a new, secure password
+
+>WHEN I click the button to generate a password<br>
+THEN I am presented with a series of prompts for password criteria
+
+>WHEN prompted for password criteria<br>
+THEN I select which criteria to include in the password
+
+>WHEN prompted for the length of the password<br>
+THEN I choose a length of at least 8 characters and no more than 128 characters
+
+>WHEN prompted for character types to include in the password<br>
+THEN I choose lowercase, uppercase, numeric, and/or special characters
+
+>WHEN I answer each prompt<br>
+THEN my input should be validated and at least one character type should be selected
+
+>WHEN all prompts are answered<br>
+THEN a password is generated that matches the selected criteria
+
+>WHEN the password is generated<br>
+THEN the password is either displayed in an alert or written to the page
+
+To improve on the usability of the application, the intention of the acceptance criteria was maintained, but the implementation was changed (e.g. form instead of window prompts).
+### Mock-up
+The following picture shows the website appearance:
+
+![Website Mock-Up](./assets/images/website-mockup.png)
+
 ## Installation
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To fork this code to further improve the website, please follow these directions:
+
+1. In Github fork the repository.
+1. Clone the repository to your local computer.
+
+_This assumes that you have setup your own SSH keys to connect with Github._
 ## Usage
-Provide instructions and examples for use. Include screenshots as needed.
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-## Credits
-List your collaborators, if any, with links to their GitHub profiles.
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-If you followed tutorials, include links to those here as well.
-## License
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
----
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-## Badges
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-## Features
-If your project has a lot of features, list them here.
-## How to Contribute
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-## Tests
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+You can access the website [here](https://avidrunner87.github.io/password-generator/).
 
-
+## References
+[MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)<br>
+[W3 Schools](https://www.w3schools.com/)<br>
+[Codepen](https://codepen.io/mburnette/pen/LxNxNg)

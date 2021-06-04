@@ -1,40 +1,33 @@
-// Assignment Code
-let lengthSlider = document.getElementById("pwLength");
-let lengthOutput = document.getElementById("pwLengthOutput");
-let generateBtn = document.querySelector("#generate");
-
-//Array of options for password criteria
+// ------------- Assignment Code -------------
+//Arrays for password criteria options
 const letterOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 const numericOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const specialCharOptions = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "-", "<", "=", ">", "?", "@", "^", "_", "~"];
 
-// Update password length slider value
+// Element selectors
+const lengthSlider = document.getElementById("pwLength");
+const lengthOutput = document.getElementById("pwLengthOutput");
+const generateBtn = document.querySelector("#generate");
+const passwordText = document.querySelector("#password");
+
+// ---------------- Functions ----------------
+// Update password length slider value 
 lengthOutput.innerHTML = lengthSlider.value;
 
 lengthSlider.oninput = function() {
   lengthOutput.innerHTML = this.value;
 }
 
-// Write password to the #password input
-function writePassword() {
-  let password = generatePassword();
-  let passwordText = document.querySelector("#password");
+// Return criteria for the password
+function getCriteria() {
+  // Gather inputs from password criteria form
+  const lowercase = document.getElementById("pwLowercase").checked;
+  const uppercase = document.getElementById("pwUppercase").checked;
+  const numeric = document.getElementById("pwNumeric").checked;
+  const specialChar = document.getElementById("pwSpecialChar").checked;
 
-  passwordText.value = password;
-
-}
-
-function generatePassword() {
-
-  //Get values from the input form
-  let length = lengthSlider.value;
-  let lowercase = document.getElementById("pwLowercase").checked;
-  let uppercase = document.getElementById("pwUppercase").checked;
-  let numeric = document.getElementById("pwNumeric").checked;
-  let specialChar = document.getElementById("pwSpecialChar").checked;
+  // Build array based on password criteria the user selected
   let passwordOptions = [];
-  let passwordOutput = "";
-
   if (lowercase) {
     passwordOptions.push("0");
   }
@@ -48,52 +41,108 @@ function generatePassword() {
     passwordOptions.push("3");
   }
 
-  if (passwordOptions != null && passwordOptions.length > 0) {
-    for(var i = 0; i < length; i++) {
-      let p = Math.floor(Math.random() * passwordOptions.length);
+  // Return the criteria array
+  return passwordOptions;
+}
 
-      if (passwordOptions[p] === "0") {
-        passwordOutput = passwordOutput += getLowerCaseOption();
+// Return option from the password criteria arrays
+function getOptions(type) {
+  // Determine the options array to use
+  let items = [];
+  if (type === "letters") {
+    items = letterOptions;
+  } else if (type === "numbers") {
+    items = numericOptions;
+  } else if (type === "characters") {
+    items = specialCharOptions;
+  }
+  
+  // Select an item in the array
+  const item = Math.floor(Math.random() * items.length);
+
+  // Return the selected item 
+  return items[item];
+}
+
+// Alert users when a password has been created
+function alertUser () {
+  // Copy the password to the clipboard
+  passwordText.select();
+  passwordText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+
+  //Alert user with window alert
+  alert("The password has been copied to the clipboard.");
+}
+
+// Write password to the #password output
+function writePassword(event) {
+  // Prevent page refresh on button click
+  event.preventDefault();
+  
+  // Generate the password
+  const password = generatePassword();
+  
+  // Populate the text area with the password and alert user if needed
+  if (password === "") {
+    passwordText.value = "Please select at least one password criteria option";
+  } else {
+    passwordText.value = password;
+    alertUser();
+  }
+}
+
+// Generate the password based on the password criteria
+function generatePassword() {
+  // Gather inputs from password criteria form
+  const length = lengthSlider.value;
+
+  // Gather the password criteria
+  const passwordCriteria = getCriteria();
+
+  // Generate the password output
+  let passwordOutput = "";
+  if (passwordCriteria != null && passwordCriteria.length > 0) {
+    for(var i = 0; i < length; i++) {
+      let p = Math.floor(Math.random() * passwordCriteria.length);
+
+      if (passwordCriteria[p] === "0") {
+        passwordOutput = passwordOutput += getOptions("letters");
       }
 
-      if (passwordOptions[p] === "1") {
-        passwordOutput = passwordOutput += getUpperCaseOption();
+      if (passwordCriteria[p] === "1") {
+        passwordOutput = passwordOutput += getOptions("letters").toUpperCase();
       } 
 
-      if (passwordOptions[p] === "2") {
-        passwordOutput = passwordOutput += getNumericOption();
+      if (passwordCriteria[p] === "2") {
+        passwordOutput = passwordOutput += getOptions("numbers");
       } 
 
-      if (passwordOptions[p] === "3") {
-        passwordOutput = passwordOutput += getSpecialCharOption();
+      if (passwordCriteria[p] === "3") {
+        passwordOutput = passwordOutput += getOptions("characters");
       } 
     }
-  } else {
-    passwordOutput = "Please select at least one password criteria option"
   }
 
+  // Return the generated password
   return passwordOutput
 }
 
-function getLowerCaseOption() {
-  let i = Math.floor(Math.random() * 26);
-  return letterOptions[i]
-}
+// ------------- Event Listeners -------------
+// Add event listener to password criteria toggles
+let toggleBtn = document.querySelectorAll("input[type=checkbox] + span");
 
-function getUpperCaseOption() {
-  let i = Math.floor(Math.random() * 26);
-  return letterOptions[i].toUpperCase()
-}
+toggleBtn.forEach(element => {
+  element.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      if (element.previousElementSibling.checked) {
+        element.previousElementSibling.checked = false;
+      } else {
+        element.previousElementSibling.checked = true;
+      }
+    }
+  })
+});
 
-function getNumericOption() {
-  let i = Math.floor(Math.random() * 10);
-  return numericOptions[i]
-}
-
-function getSpecialCharOption() {
-  let i = Math.floor(Math.random() * 18);
-  return specialCharOptions[i]
-}
-
-// Add event listener to generate button
+// Add event listener to password generation button
 generateBtn.addEventListener("click", writePassword);

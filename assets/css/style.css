@@ -1,12 +1,9 @@
-*,
-*::before,
-*::after {
+/* Formatting for the entire website */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-html,
-body,
-.wrapper {
+html, body, .wrapper {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -23,6 +20,7 @@ body {
   padding-right: 20px;
 }
 
+/* Formatting for the header of the website */
 header {
   text-align: center;
   padding: 20px;
@@ -30,6 +28,7 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+/* Formatting for the main content of the website */
 .card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
@@ -72,6 +71,109 @@ header {
   clear: both;
 }
 
+.center {
+  text-align: center;
+  margin: 20px;
+}
+
+/* Formatting for the Password Criteria */
+
+form {
+  margin: 10px;
+}
+
+label {
+  display: block;
+}
+
+/* Formatting for Slider Inputs */
+input[type=range] {
+  appearance: none;
+  width: 75%;
+  height: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background: gray;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 9999em;
+}
+
+input[type=range]:hover,
+input[type=range]:focus {
+  background-color: #ccc;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 21px;
+  height: 21px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Formatting for Checkbox Inputs */
+input[type=checkbox] {
+  visibility: hidden;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+input[type=checkbox] + span {
+	cursor: pointer;
+	text-indent: -9999px;
+  left: 15px;
+	width: 48px;
+	height: 24px;
+	background: grey;
+	display: block;
+	border-radius: 9999em;
+	position: relative;
+  user-select: auto; 
+}
+
+input[type=checkbox] + span:after {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 9999em;
+	transition: 0.3s;
+}
+
+input[type=checkbox]:checked + span {
+	background: #bada55;
+}
+
+input[type=checkbox]:checked + span:after {
+	left: calc(100% - 2px);
+	transform: translateX(-100%);
+}
+
+input[type=checkbox] + span:active:after {
+	width: 20px;
+}
+
+input[type=checkbox] + span:hover {
+  background-color: #ccc;
+}
+
+/* Formatting for the Generate Password button */
 .btn {
   border: none;
   background-color: hsl(360, 91%, 36%);
@@ -98,8 +200,6 @@ button[disabled] {
 }
 
 #password {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   border: none;
   display: block;
@@ -118,20 +218,10 @@ button[disabled] {
   overflow: hidden;
 }
 
+/* Formatting for changes in the view window for the website */
 @media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
-  }
-
   #password {
     font-size: 1rem;
   }
 }
 
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
-}
